@@ -1,0 +1,133 @@
+﻿# Runtime process log. This file is intentionally cleared before sharing the project.
+2026-05-17 18:57:50 | INFO | medical.process | backend.startup.begin | 
+2026-05-17 19:01:02 | INFO | medical.process | backend.startup.begin | 
+2026-05-17 19:01:43 | INFO | medical.process | backend.startup.begin | 
+2026-05-17 19:02:17 | INFO | medical.process | backend.startup.begin | 
+2026-05-17 19:25:30 | INFO | medical.process | backend.startup.begin | 
+2026-05-17 19:27:33 | INFO | medical.process | backend.startup.begin | 
+2026-05-17 19:29:25 | INFO | medical.process | backend.startup.begin | 
+2026-05-17 19:29:26 | INFO | medical.process | backend.startup.database_ready | 
+2026-05-17 19:29:26 | INFO | medical.process | embedding.preload.done | model=Qwen3-Embedding-4B
+2026-05-17 19:29:26 | INFO | __main__ | Embedding model preloaded
+2026-05-17 19:30:06 | INFO | medical.process | upload.begin | user_id=7fc4b56b677340a2a334569f8ac9def8 filename=肺部CT多发结节模拟报告.pdf
+2026-05-17 19:30:06 | INFO | medical.process | upload.file_saved | user_id=7fc4b56b677340a2a334569f8ac9def8 doc_id=ed1aa26e45314a7391c6235c19426385 path=D:\xianyuProject\Agent_Project\Medical_Agent\data\uploads\pdf\7fc4b56b677340a2a334569f8ac9def8\ed1aa26e45314a7391c6235c19426385.pdf bytes=2405464
+2026-05-17 19:30:06 | INFO | medical.process | upload.pdf_text_probe | user_id=7fc4b56b677340a2a334569f8ac9def8 doc_id=ed1aa26e45314a7391c6235c19426385 chars=18
+2026-05-17 19:30:07 | INFO | medical.process | upload.pdf_rendered_for_vlm | user_id=7fc4b56b677340a2a334569f8ac9def8 doc_id=ed1aa26e45314a7391c6235c19426385 pages=1
+2026-05-17 19:30:07 | INFO | medical.process | upload.model_parse.begin | user_id=7fc4b56b677340a2a334569f8ac9def8 doc_id=ed1aa26e45314a7391c6235c19426385 mode=pdf_image_vlm
+2026-05-17 19:30:07 | INFO | medical.process | model.image_parse.request | model=gemini-3.1-flash-lite images=1 attempt=1
+2026-05-17 19:30:14 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-17 19:30:14 | INFO | medical.process | model.image_parse.response | model=gemini-3.1-flash-lite chars=911
+2026-05-17 19:30:14 | INFO | medical.process | upload.model_parse.done | user_id=7fc4b56b677340a2a334569f8ac9def8 doc_id=ed1aa26e45314a7391c6235c19426385 confidence=1.0
+2026-05-17 19:30:14 | INFO | medical.process | upload.postgres_saved | user_id=7fc4b56b677340a2a334569f8ac9def8 doc_id=ed1aa26e45314a7391c6235c19426385 doc_type=imaging_report title=胸部CT影像诊断报告单
+2026-05-17 19:30:14 | INFO | medical.process | upload.vectorize.begin | user_id=7fc4b56b677340a2a334569f8ac9def8 doc_id=ed1aa26e45314a7391c6235c19426385
+2026-05-17 19:30:14 | INFO | medical.process | chroma.add.begin | collection=user_reports chunks=3
+2026-05-17 19:30:14 | INFO | medical.process | embedding.api.begin | provider=dmxapi model=Qwen3-Embedding-4B count=3
+2026-05-17 19:30:16 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:16 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:21 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:23 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:27 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:29 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:29 | WARNING | app.api.upload | background chroma write failed: embedding failed after 3 retries: RuntimeError: RuntimeError('embedding HTTP 503: {"error":{"code":"","message":"所有令牌分组 default 下对于模型 Qwen3-Embedding-4B 均无可用渠道，请更换分组尝试 (request id: 20260517193029534387765QcjWZOG1)","type":"rix_api_error"}}')
+2026-05-17 19:30:29 | INFO | medical.process | upload.vectorize.done | user_id=7fc4b56b677340a2a334569f8ac9def8 doc_id=ed1aa26e45314a7391c6235c19426385 chunks=0
+2026-05-17 19:30:34 | INFO | medical.process | chat.begin | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation session_id=545b9a59-bd45-4698-8e49-a23e623571f9
+2026-05-17 19:30:35 | INFO | medical.process | agent.trace | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation agent=RouterAgent action=route detail=识别业务场景为 线上问诊，进入综合推理链路
+2026-05-17 19:30:35 | INFO | medical.process | agent.trace | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation agent=AttachmentAgent action=ingest detail=用户随消息附带 1 份报告/影像：胸部CT影像诊断报告单
+2026-05-17 19:30:35 | INFO | medical.process | agent.trace | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation agent=ContextAgent action=profile detail=整理患者上下文与历史对话；本地风险提示：低风险（仅作参考）
+2026-05-17 19:30:35 | INFO | medical.process | model.chat.request | model=gemini-3.1-flash-lite api_type=chat_completions messages=2
+2026-05-17 19:30:37 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-17 19:30:37 | INFO | medical.process | agent.trace | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation agent=RouterAgent action=intent detail=任务意图：current_report_interpretation；历史报告检索：开启；策略：current_attachment_first
+2026-05-17 19:30:37 | INFO | medical.process | chroma.query.begin | collection=medical_kb top_k=6
+2026-05-17 19:30:37 | INFO | medical.process | embedding.api.query | provider=dmxapi model=Qwen3-Embedding-4B
+2026-05-17 19:30:37 | INFO | medical.process | chroma.query.begin | collection=user_reports top_k=14 where={'user_id': '7fc4b56b677340a2a334569f8ac9def8'}
+2026-05-17 19:30:37 | INFO | medical.process | embedding.api.query | provider=dmxapi model=Qwen3-Embedding-4B
+2026-05-17 19:30:37 | INFO | medical.process | chroma.query.begin | collection=user_reports top_k=14 where={'user_id': '7fc4b56b677340a2a334569f8ac9def8'}
+2026-05-17 19:30:37 | INFO | medical.process | embedding.api.query | provider=dmxapi model=Qwen3-Embedding-4B
+2026-05-17 19:30:37 | INFO | medical.process | chroma.query.begin | collection=user_reports top_k=14 where={'user_id': '7fc4b56b677340a2a334569f8ac9def8'}
+2026-05-17 19:30:37 | INFO | medical.process | embedding.api.query | provider=dmxapi model=Qwen3-Embedding-4B
+2026-05-17 19:30:38 | INFO | primp | response: https://www.bing.com/search?q=%E7%BA%BF%E4%B8%8A%E9%97%AE%E8%AF%8A+%E5%81%A5%E5%BA%B7%E7%A7%91%E6%99%AE+%E7%A7%91%E5%AE%A4%E5%AE%9A%E4%BD%8D+%E6%8E%A8%E8%8D%90%E7%A7%91%E5%AE%A4+%E5%B0%B1%E5%8C%BB%E5%BB%BA%E8%AE%AE+%E6%88%91%E8%BF%99%E4%B8%AA%E4%B8%A5%E9%87%8D%E5%90%97+%E6%88%91%E8%BF%99%E4%B8%AA%E4%B8%A5%E9%87%8D%E5%90%97+%7B%27age%27%3A+24%2C+%27gender%27%3A+%27%E7%94%B7%27%2C+%27chronic_diseases%27%3A+%27%27%2C+%27allergy_history%27%3A+%27%27%2C+%27medication_history%27%3A+%27%27%7D+%E5%8C%BB%E5%AD%A6+%E6%8C%87%E5%8D%97+%E5%81%A5%E5%BA%B7+%E7%A7%91%E6%99%AE 200
+2026-05-17 19:30:38 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:38 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:38 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:38 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:39 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:39 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:40 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:40 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:41 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:41 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:42 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:43 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:44 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:44 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:44 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:44 | WARNING | app.services.chroma_rag_service | Chroma query failed on user_reports: embedding failed after 3 retries: RuntimeError: RuntimeError('embedding HTTP 503: {"error":{"code":"","message":"所有令牌分组 default 下对于模型 Qwen3-Embedding-4B 均无可用渠道，请更换分组尝试 (request id: 20260517193044624469710yCCSuIJL)","type":"rix_api_error"}}')
+2026-05-17 19:30:44 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:44 | WARNING | app.services.chroma_rag_service | Chroma query failed on user_reports: embedding failed after 3 retries: RuntimeError: RuntimeError('embedding HTTP 503: {"error":{"code":"","message":"所有令牌分组 default 下对于模型 Qwen3-Embedding-4B 均无可用渠道，请更换分组尝试 (request id: 202605171930447337911596vXWVsSv)","type":"rix_api_error"}}')
+2026-05-17 19:30:46 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:47 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:47 | WARNING | app.services.chroma_rag_service | Chroma query failed on user_reports: embedding failed after 3 retries: RuntimeError: RuntimeError('embedding HTTP 503: {"error":{"code":"","message":"所有令牌分组 default 下对于模型 Qwen3-Embedding-4B 均无可用渠道，请更换分组尝试 (request id: 20260517193046902787138T1vuywyt)","type":"rix_api_error"}}')
+2026-05-17 19:30:47 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:47 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:51 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:51 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 503 Service Unavailable"
+2026-05-17 19:30:51 | WARNING | app.services.chroma_rag_service | Chroma query failed on medical_kb: embedding failed after 3 retries: RuntimeError: RuntimeError('embedding HTTP 503: {"error":{"code":"","message":"所有令牌分组 default 下对于模型 Qwen3-Embedding-4B 均无可用渠道，请更换分组尝试 (request id: 202605171930514090758266ieNiZ7B)","type":"rix_api_error"}}')
+2026-05-17 19:30:52 | INFO | medical.process | agent.trace | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation agent=MemoryRAGAgent action=semantic_retrieve detail=按当前报告/问题画像召回历史报告 5 条，相关性门控后采用 5 条
+2026-05-17 19:30:52 | INFO | medical.process | agent.trace | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation agent=RAGAgent action=retrieve detail=Chroma 知识库召回 0 条
+2026-05-17 19:30:52 | INFO | medical.process | agent.trace | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation agent=ResearchAgent action=deep_search detail=联网搜索返回 0 条证据
+2026-05-17 19:30:52 | INFO | medical.process | agent.trace | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation agent=ReasoningAgent action=stream_start detail=开始流式生成自然语言回答
+2026-05-17 19:30:52 | INFO | medical.process | model.chat_stream.begin | model=gemini-3.1-flash-lite api_type=chat_completions messages=2
+2026-05-17 19:30:53 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-17 19:30:56 | INFO | medical.process | agent.trace | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation agent=SafetyAgent action=guard detail=完成医疗安全边界与免责声明检查
+2026-05-17 19:30:56 | INFO | medical.process | chat.done | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation session_id=545b9a59-bd45-4698-8e49-a23e623571f9 risk=中风险
+2026-05-17 19:32:59 | INFO | medical.process | backend.startup.begin | 
+2026-05-17 19:32:59 | INFO | medical.process | backend.startup.database_ready | 
+2026-05-17 19:32:59 | INFO | medical.process | embedding.preload.done | model=qwen3-embedding-8b
+2026-05-17 19:32:59 | INFO | __main__ | Embedding model preloaded
+2026-05-17 19:33:11 | INFO | medical.process | upload.begin | user_id=7fc4b56b677340a2a334569f8ac9def8 filename=模拟肺部CT检查报告单.pdf session_id=545b9a59-bd45-4698-8e49-a23e623571f9
+2026-05-17 19:33:11 | INFO | medical.process | upload.file_saved | user_id=7fc4b56b677340a2a334569f8ac9def8 doc_id=038918f797914227a3f87496d9f7685b path=D:\xianyuProject\Agent_Project\Medical_Agent\data\uploads\pdf\7fc4b56b677340a2a334569f8ac9def8\038918f797914227a3f87496d9f7685b.pdf bytes=5162
+2026-05-17 19:33:11 | INFO | medical.process | upload.pdf_text_probe | user_id=7fc4b56b677340a2a334569f8ac9def8 doc_id=038918f797914227a3f87496d9f7685b chars=702
+2026-05-17 19:33:11 | INFO | medical.process | upload.model_parse.begin | user_id=7fc4b56b677340a2a334569f8ac9def8 doc_id=038918f797914227a3f87496d9f7685b mode=pdf_text
+2026-05-17 19:33:11 | INFO | medical.process | model.text_parse.request | model=gemini-3.1-flash-lite chars=702 attempt=1
+2026-05-17 19:33:13 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-17 19:33:13 | INFO | medical.process | model.text_parse.response | model=gemini-3.1-flash-lite chars=806
+2026-05-17 19:33:13 | INFO | medical.process | upload.model_parse.done | user_id=7fc4b56b677340a2a334569f8ac9def8 doc_id=038918f797914227a3f87496d9f7685b confidence=1.0
+2026-05-17 19:33:14 | INFO | medical.process | upload.postgres_saved | user_id=7fc4b56b677340a2a334569f8ac9def8 doc_id=038918f797914227a3f87496d9f7685b doc_type=imaging_report title=胸部CT平扫报告
+2026-05-17 19:33:14 | INFO | medical.process | upload.vectorize.begin | user_id=7fc4b56b677340a2a334569f8ac9def8 doc_id=038918f797914227a3f87496d9f7685b
+2026-05-17 19:33:14 | INFO | medical.process | chroma.add.begin | collection=user_reports chunks=5
+2026-05-17 19:33:14 | INFO | medical.process | embedding.api.begin | provider=dmxapi model=qwen3-embedding-8b count=5
+2026-05-17 19:33:15 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-05-17 19:33:15 | INFO | medical.process | chroma.add.done | collection=user_reports chunks=5
+2026-05-17 19:33:15 | INFO | medical.process | upload.vectorize.done | user_id=7fc4b56b677340a2a334569f8ac9def8 doc_id=038918f797914227a3f87496d9f7685b chunks=5
+2026-05-17 19:33:22 | INFO | medical.process | chat.begin | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation session_id=545b9a59-bd45-4698-8e49-a23e623571f9
+2026-05-17 19:33:22 | INFO | medical.process | agent.trace | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation agent=RouterAgent action=route detail=识别业务场景为 线上问诊，进入综合推理链路
+2026-05-17 19:33:22 | INFO | medical.process | agent.trace | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation agent=AttachmentAgent action=ingest detail=用户随消息附带 1 份报告/影像：胸部CT平扫报告
+2026-05-17 19:33:22 | INFO | medical.process | agent.trace | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation agent=ContextAgent action=profile detail=整理患者上下文与历史对话；本地风险提示：低风险（仅作参考）
+2026-05-17 19:33:22 | INFO | medical.process | model.chat.request | model=gemini-3.1-flash-lite api_type=chat_completions messages=2
+2026-05-17 19:33:24 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-17 19:33:24 | INFO | medical.process | agent.trace | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation agent=RouterAgent action=intent detail=任务意图：longitudinal_compare；历史报告检索：开启；策略：history_compare
+2026-05-17 19:33:24 | INFO | medical.process | chroma.query.begin | collection=medical_kb top_k=6
+2026-05-17 19:33:24 | INFO | medical.process | embedding.api.query | provider=dmxapi model=qwen3-embedding-8b
+2026-05-17 19:33:24 | INFO | medical.process | chroma.query.begin | collection=user_reports top_k=14 where={'user_id': '7fc4b56b677340a2a334569f8ac9def8'}
+2026-05-17 19:33:24 | INFO | medical.process | embedding.api.query | provider=dmxapi model=qwen3-embedding-8b
+2026-05-17 19:33:24 | INFO | medical.process | chroma.query.begin | collection=user_reports top_k=14 where={'user_id': '7fc4b56b677340a2a334569f8ac9def8'}
+2026-05-17 19:33:24 | INFO | medical.process | embedding.api.query | provider=dmxapi model=qwen3-embedding-8b
+2026-05-17 19:33:24 | INFO | medical.process | chroma.query.begin | collection=user_reports top_k=14 where={'user_id': '7fc4b56b677340a2a334569f8ac9def8'}
+2026-05-17 19:33:24 | INFO | medical.process | embedding.api.query | provider=dmxapi model=qwen3-embedding-8b
+2026-05-17 19:33:25 | INFO | primp | response: https://www.bing.com/search?q=%E7%BA%BF%E4%B8%8A%E9%97%AE%E8%AF%8A+%E5%81%A5%E5%BA%B7%E7%A7%91%E6%99%AE+%E7%A7%91%E5%AE%A4%E5%AE%9A%E4%BD%8D+%E6%8E%A8%E8%8D%90%E7%A7%91%E5%AE%A4+%E5%B0%B1%E5%8C%BB%E5%BB%BA%E8%AE%AE+%E8%BF%99%E6%98%AF%E6%88%91%E7%8E%B0%E5%9C%A83%E4%B8%AA%E6%9C%88%E5%90%8E%E7%9A%84+%E6%88%91%E8%BF%99%E4%B8%AA%E4%B8%A5%E9%87%8D%E5%90%97+%E8%BF%99%E6%98%AF%E6%88%91%E7%8E%B0%E5%9C%A83%E4%B8%AA%E6%9C%88%E5%90%8E%E7%9A%84+%7B%27age%27%3A+24%2C+%27gender%27%3A+%27%E7%94%B7%27%2C+%27chronic_diseases%27%3A+%27%27%2C+%27allergy_history%27%3A+%27%27%2C+%27medication_history%27%3A+%27%27%7D+%E5%8C%BB%E5%AD%A6+%E6%8C%87%E5%8D%97+%E5%81%A5%E5%BA%B7+%E7%A7%91%E6%99%AE 200
+2026-05-17 19:33:26 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-05-17 19:33:26 | INFO | medical.process | chroma.query.done | collection=user_reports
+2026-05-17 19:33:26 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-05-17 19:33:26 | INFO | medical.process | chroma.query.done | collection=user_reports
+2026-05-17 19:33:27 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-05-17 19:33:27 | INFO | medical.process | chroma.query.done | collection=user_reports
+2026-05-17 19:33:30 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-05-17 19:33:30 | INFO | medical.process | chroma.query.done | collection=medical_kb
+2026-05-17 19:33:31 | INFO | medical.process | agent.trace | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation agent=MemoryRAGAgent action=semantic_retrieve detail=按当前报告/问题画像召回历史报告 13 条，相关性门控后采用 6 条
+2026-05-17 19:33:31 | INFO | medical.process | agent.trace | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation agent=RAGAgent action=retrieve detail=Chroma 知识库召回 6 条
+2026-05-17 19:33:31 | INFO | medical.process | agent.trace | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation agent=ResearchAgent action=deep_search detail=联网搜索返回 0 条证据
+2026-05-17 19:33:31 | INFO | medical.process | agent.trace | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation agent=ReasoningAgent action=stream_start detail=开始流式生成自然语言回答
+2026-05-17 19:33:31 | INFO | medical.process | model.chat_stream.begin | model=gemini-3.1-flash-lite api_type=chat_completions messages=2
+2026-05-17 19:33:32 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-17 19:33:34 | INFO | medical.process | agent.trace | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation agent=SafetyAgent action=guard detail=完成医疗安全边界与免责声明检查
+2026-05-17 19:33:35 | INFO | medical.process | chat.done | user_id=7fc4b56b677340a2a334569f8ac9def8 scene=consultation session_id=545b9a59-bd45-4698-8e49-a23e623571f9 risk=低风险

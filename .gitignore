@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+.env
+
+# Frontend
+node_modules/
+dist/
+*.local
+
+# Data
+data/chroma/
+data/uploads/
+data/*.db
+storage/*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docs (PDFs in root)
+*.pdf
+
+# Temporary files
+*.tmp
+*.bak
