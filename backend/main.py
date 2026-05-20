@@ -1,3 +1,4 @@
+# CI/CD 自动构建测试
 from __future__ import annotations
 
 import asyncio
@@ -15,6 +16,7 @@ from app.api.extra import router as extra_router
 from app.core.database import init_db
 from app.core.process_logger import log_step, setup_process_logging
 from app.services.chroma_rag_service import get_chroma_service
+# CI/CD 自动构建测试
 
 setup_process_logging()
 logger = logging.getLogger(__name__)
