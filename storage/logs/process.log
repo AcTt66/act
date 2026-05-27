@@ -1738,3 +1738,47 @@ Traceback (most recent call last):
   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
     self._sock.shutdown(socket.SHUT_RDWR)
 ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2026-05-20 10:46:41 | INFO | medical.process | backend.startup.begin | 
+2026-05-20 10:46:41 | INFO | medical.process | backend.startup.database_ready | 
+2026-05-20 10:46:41 | INFO | medical.process | embedding.preload.done | model=qwen3-embedding-8b
+2026-05-20 10:46:41 | INFO | main | Embedding model preloaded
+2026-05-20 11:07:58 | INFO | medical.process | chat.begin | user_id=270a066e6d0049a29c06fd0f28444488 scene=triage session_id=a960dc7b-f154-465f-9309-5ff91e83b64b
+2026-05-20 11:07:58 | INFO | medical.process | agent.trace | user_id=270a066e6d0049a29c06fd0f28444488 scene=triage agent=RouterAgent action=route detail=识别业务场景为 智能分诊，进入综合推理链路
+2026-05-20 11:07:58 | INFO | medical.process | agent.trace | user_id=270a066e6d0049a29c06fd0f28444488 scene=triage agent=ContextAgent action=profile detail=整理患者上下文与历史对话；本地风险提示：低风险（仅作参考）
+2026-05-20 11:07:58 | INFO | medical.process | agent.trace | user_id=270a066e6d0049a29c06fd0f28444488 scene=triage agent=RouterAgent action=intent detail=任务意图：triage；历史报告检索：关闭；策略：knowledge_first
+2026-05-20 11:08:05 | INFO | httpx | HTTP Request: GET https://duckduckgo.com/html/?q=%E6%99%BA%E8%83%BD%E5%88%86%E8%AF%8A+%E7%A7%91%E5%AE%A4%E5%AE%9A%E4%BD%8D+%E6%8E%A8%E8%8D%90%E9%80%BB%E8%BE%91+%E7%A7%91%E5%AE%A4%E5%88%AB%E5%90%8D+%E7%BA%A2%E6%97%97%E7%97%87%E7%8A%B6+%E4%B8%BB%E8%AF%89%E7%97%87%E7%8A%B6+%E6%8E%A8%E8%8D%90%E7%A7%91%E5%AE%A4+%E6%88%91%E6%84%9F%E5%86%92%E4%BA%86+%7B%27age%27%3A+26%2C+%27gender%27%3A+%27%E7%94%B7%27%2C+%27chronic_diseases%27%3A+%27%27%2C+%27allergy_history%27%3A+%27%27%2C+%27medication_history%27%3A+%27%27%7D+%E5%8C%BB%E5%AD%A6+%E6%8C%87%E5%8D%97+%E5%81%A5%E5%BA%B7+%E7%A7%91%E6%99%AE "HTTP/1.1 302 Moved Temporarily"
+2026-05-20 11:08:08 | INFO | httpx | HTTP Request: GET https://html.duckduckgo.com/html/?q=%E6%99%BA%E8%83%BD%E5%88%86%E8%AF%8A+%E7%A7%91%E5%AE%A4%E5%AE%9A%E4%BD%8D+%E6%8E%A8%E8%8D%90%E9%80%BB%E8%BE%91+%E7%A7%91%E5%AE%A4%E5%88%AB%E5%90%8D+%E7%BA%A2%E6%97%97%E7%97%87%E7%8A%B6+%E4%B8%BB%E8%AF%89%E7%97%87%E7%8A%B6+%E6%8E%A8%E8%8D%90%E7%A7%91%E5%AE%A4+%E6%88%91%E6%84%9F%E5%86%92%E4%BA%86+%7B%27age%27%3A+26%2C+%27gender%27%3A+%27%E7%94%B7%27%2C+%27chronic_diseases%27%3A+%27%27%2C+%27allergy_history%27%3A+%27%27%2C+%27medication_history%27%3A+%27%27%7D+%E5%8C%BB%E5%AD%A6+%E6%8C%87%E5%8D%97+%E5%81%A5%E5%BA%B7+%E7%A7%91%E6%99%AE "HTTP/1.1 403 Forbidden"
+2026-05-20 11:08:08 | INFO | medical.process | agent.trace | user_id=270a066e6d0049a29c06fd0f28444488 scene=triage agent=RAGAgent action=retrieve detail=本地知识库召回 6 条证据（词袋）
+2026-05-20 11:08:08 | INFO | medical.process | agent.trace | user_id=270a066e6d0049a29c06fd0f28444488 scene=triage agent=ResearchAgent action=deep_search detail=联网搜索返回 1 条证据
+2026-05-20 11:08:08 | INFO | medical.process | agent.trace | user_id=270a066e6d0049a29c06fd0f28444488 scene=triage agent=ReasoningAgent action=stream_start detail=开始流式生成自然语言回答
+2026-05-20 11:08:08 | INFO | medical.process | model.chat_stream.begin | model=qwen-plus api_type=chat_completions messages=2
+2026-05-20 11:08:10 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-20 11:08:23 | INFO | medical.process | agent.trace | user_id=270a066e6d0049a29c06fd0f28444488 scene=triage agent=SafetyAgent action=guard detail=完成医疗安全边界与免责声明检查
+2026-05-20 11:08:23 | INFO | medical.process | chat.done | user_id=270a066e6d0049a29c06fd0f28444488 scene=triage session_id=a960dc7b-f154-465f-9309-5ff91e83b64b risk=低风险
+2026-05-20 11:08:55 | INFO | medical.process | upload.begin | user_id=270a066e6d0049a29c06fd0f28444488 filename=ganshen.jpg
+2026-05-20 11:08:55 | INFO | medical.process | upload.file_saved | user_id=270a066e6d0049a29c06fd0f28444488 doc_id=b32d216b41034b6db5269f81cb61334e path=D:\BaiduNetdiskDownload\医路通Agent_Pro\data\uploads\images\270a066e6d0049a29c06fd0f28444488\b32d216b41034b6db5269f81cb61334e.jpg bytes=74189
+2026-05-20 11:08:57 | INFO | medical.process | upload.image_encoded | user_id=270a066e6d0049a29c06fd0f28444488 doc_id=b32d216b41034b6db5269f81cb61334e pages=1
+2026-05-20 11:08:57 | INFO | medical.process | upload.model_parse.begin | user_id=270a066e6d0049a29c06fd0f28444488 doc_id=b32d216b41034b6db5269f81cb61334e mode=image
+2026-05-20 11:08:57 | INFO | medical.process | model.image_parse.request | model=qwen-vl-plus images=1 attempt=1
+2026-05-20 11:09:20 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-20 11:09:20 | INFO | medical.process | model.image_parse.response | model=qwen-vl-plus chars=3868
+2026-05-20 11:09:20 | INFO | medical.process | upload.model_parse.done | user_id=270a066e6d0049a29c06fd0f28444488 doc_id=b32d216b41034b6db5269f81cb61334e confidence=0.95
+2026-05-20 11:09:20 | INFO | medical.process | upload.postgres_saved | user_id=270a066e6d0049a29c06fd0f28444488 doc_id=b32d216b41034b6db5269f81cb61334e doc_type=lab_report title=肝功能检查报告
+2026-05-20 11:09:20 | INFO | medical.process | upload.vectorize.begin | user_id=270a066e6d0049a29c06fd0f28444488 doc_id=b32d216b41034b6db5269f81cb61334e
+2026-05-20 11:09:20 | INFO | medical.process | upload.vectorize.done | user_id=270a066e6d0049a29c06fd0f28444488 doc_id=b32d216b41034b6db5269f81cb61334e chunks=0
+2026-05-20 11:09:22 | INFO | medical.process | chat.begin | user_id=270a066e6d0049a29c06fd0f28444488 scene=consultation session_id=8369bd0b-9e02-4261-8180-468097b26099
+2026-05-20 11:09:22 | INFO | medical.process | agent.trace | user_id=270a066e6d0049a29c06fd0f28444488 scene=consultation agent=RouterAgent action=route detail=识别业务场景为 线上问诊，进入综合推理链路
+2026-05-20 11:09:22 | INFO | medical.process | agent.trace | user_id=270a066e6d0049a29c06fd0f28444488 scene=consultation agent=AttachmentAgent action=ingest detail=用户随消息附带 1 份报告/影像：肝功能检查报告
+2026-05-20 11:09:22 | INFO | medical.process | agent.trace | user_id=270a066e6d0049a29c06fd0f28444488 scene=consultation agent=ContextAgent action=profile detail=整理患者上下文与历史对话；本地风险提示：低风险（仅作参考）
+2026-05-20 11:09:22 | INFO | medical.process | model.chat.request | model=qwen-plus api_type=chat_completions messages=2
+2026-05-20 11:09:27 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-20 11:09:27 | INFO | medical.process | agent.trace | user_id=270a066e6d0049a29c06fd0f28444488 scene=consultation agent=RouterAgent action=intent detail=任务意图：current_report_interpretation；历史报告检索：关闭；策略：current_attachment_first
+2026-05-20 11:09:31 | INFO | httpx | HTTP Request: GET https://duckduckgo.com/html/?q=%E7%BA%BF%E4%B8%8A%E9%97%AE%E8%AF%8A+%E5%81%A5%E5%BA%B7%E7%A7%91%E6%99%AE+%E7%A7%91%E5%AE%A4%E5%AE%9A%E4%BD%8D+%E6%8E%A8%E8%8D%90%E7%A7%91%E5%AE%A4+%E5%B0%B1%E5%8C%BB%E5%BB%BA%E8%AE%AE+%E8%AF%B7%E5%B8%AE%E6%88%91%E5%88%86%E6%9E%90%E8%BF%99%E4%BA%9B%E6%8A%A5%E5%91%8A+%E8%AF%B7%E5%B8%AE%E6%88%91%E5%88%86%E6%9E%90%E8%BF%99%E4%BA%9B%E6%8A%A5%E5%91%8A+%7B%27age%27%3A+26%2C+%27gender%27%3A+%27%E7%94%B7%27%2C+%27chronic_diseases%27%3A+%27%27%2C+%27allergy_history%27%3A+%27%27%2C+%27medication_history%27%3A+%27%27%7D+%E5%8C%BB%E5%AD%A6+%E6%8C%87%E5%8D%97+%E5%81%A5%E5%BA%B7+%E7%A7%91%E6%99%AE "HTTP/1.1 302 Moved Temporarily"
+2026-05-20 11:09:33 | INFO | httpx | HTTP Request: GET https://html.duckduckgo.com/html/?q=%E7%BA%BF%E4%B8%8A%E9%97%AE%E8%AF%8A+%E5%81%A5%E5%BA%B7%E7%A7%91%E6%99%AE+%E7%A7%91%E5%AE%A4%E5%AE%9A%E4%BD%8D+%E6%8E%A8%E8%8D%90%E7%A7%91%E5%AE%A4+%E5%B0%B1%E5%8C%BB%E5%BB%BA%E8%AE%AE+%E8%AF%B7%E5%B8%AE%E6%88%91%E5%88%86%E6%9E%90%E8%BF%99%E4%BA%9B%E6%8A%A5%E5%91%8A+%E8%AF%B7%E5%B8%AE%E6%88%91%E5%88%86%E6%9E%90%E8%BF%99%E4%BA%9B%E6%8A%A5%E5%91%8A+%7B%27age%27%3A+26%2C+%27gender%27%3A+%27%E7%94%B7%27%2C+%27chronic_diseases%27%3A+%27%27%2C+%27allergy_history%27%3A+%27%27%2C+%27medication_history%27%3A+%27%27%7D+%E5%8C%BB%E5%AD%A6+%E6%8C%87%E5%8D%97+%E5%81%A5%E5%BA%B7+%E7%A7%91%E6%99%AE "HTTP/1.1 403 Forbidden"
+2026-05-20 11:09:33 | INFO | medical.process | agent.trace | user_id=270a066e6d0049a29c06fd0f28444488 scene=consultation agent=RAGAgent action=retrieve detail=本地知识库召回 6 条证据（词袋）
+2026-05-20 11:09:33 | INFO | medical.process | agent.trace | user_id=270a066e6d0049a29c06fd0f28444488 scene=consultation agent=ResearchAgent action=deep_search detail=联网搜索返回 1 条证据
+2026-05-20 11:09:33 | INFO | medical.process | agent.trace | user_id=270a066e6d0049a29c06fd0f28444488 scene=consultation agent=ReasoningAgent action=stream_start detail=开始流式生成自然语言回答
+2026-05-20 11:09:33 | INFO | medical.process | model.chat_stream.begin | model=qwen-plus api_type=chat_completions messages=2
+2026-05-20 11:09:36 | INFO | httpx | HTTP Request: POST https://www.dmxapi.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-20 11:10:01 | INFO | medical.process | agent.trace | user_id=270a066e6d0049a29c06fd0f28444488 scene=consultation agent=SafetyAgent action=guard detail=完成医疗安全边界与免责声明检查
+2026-05-20 11:10:01 | INFO | medical.process | chat.done | user_id=270a066e6d0049a29c06fd0f28444488 scene=consultation session_id=8369bd0b-9e02-4261-8180-468097b26099 risk=中风险
